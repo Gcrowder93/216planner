@@ -3,6 +3,7 @@ import { parseDate } from '../utils/parseDate';
 
 // payload is an entry object:
 // { title: String, content: String, date: Date }
+
 function entriesReducer(entries, { type, payload }) {
   switch (type) {
     case 'create':
@@ -24,7 +25,8 @@ function entriesReducer(entries, { type, payload }) {
 export const PlannerContext = createContext();
 
 const PlannerProvider = ({ children }) => {
-  const [entries, dispatch] = useReducer(entriesReducer, []);
+  const initialItems = [];
+  const [entries, dispatch] = useReducer(entriesReducer, initialItems);
 
   useEffect(() => {
     // Note that 'entries' below would likely be an API request in practice
